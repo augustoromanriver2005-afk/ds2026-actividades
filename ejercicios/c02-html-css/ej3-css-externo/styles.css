@@ -1,0 +1,13 @@
+h2 {
+    color: rgb(255, 0, 0);
+    width: 175px;
+    padding: 10px;
+    border: 2px solid black;
+}
+* {
+    box-sizing: border-box;
+}
+
+.pie{
+   color:rgb(0, 0, 0); 
+}
