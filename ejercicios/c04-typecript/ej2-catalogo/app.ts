@@ -115,3 +115,4 @@ botonTodos.addEventListener("click", () => {
 
 // mostrar todo al cargar
 renderizar(catalogo);
+export {};
