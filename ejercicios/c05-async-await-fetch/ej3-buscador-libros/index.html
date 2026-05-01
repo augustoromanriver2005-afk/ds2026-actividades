@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3 - Buscador de Libros</title>
+  <style>
+    #error {
+      color: red;
+    }
+
+    /* Cada tarjeta de libro tiene un bordeado y espaciado */
+    .tarjeta {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Buscador de Libros</h1>
+
+  <!-- Input del usuario, botón y mensaje de error -->
+  <input type="text" id="inputBusqueda" placeholder="Ej: Harry Potter" />
+  <button id="btnBuscar">Buscar</button>
+  <p id="error" style="display: none;"></p>
+
+  <!-- Mensaje de carga -->
+  <p id="cargando" style="display: none;">Cargando...</p>
+
+  <!-- Acá se renderizan las tarjetas de resultados -->
+  <div id="resultados"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
