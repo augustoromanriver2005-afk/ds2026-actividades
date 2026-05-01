@@ -27,7 +27,7 @@ async function main() {
 
     const usuarios = await obtenerUsuarios()
 
-    // Cuando llegan los datos, ocultamos el "Cargando..."
+    // llegan los datos, ocultamos el "Cargando..."
     cargando.style.display = "none"
 
     // Construimos el HTML de la lista recorriendo el array
@@ -42,7 +42,7 @@ async function main() {
     // Si algo falla: ocultamos "Cargando..." y mostramos el error en rojo
     cargando.style.display = "none"
     error.style.display = "block"
-    error.textContent = "Error al cargar los usuarios. Intentá de nuevo más tarde."
+    error.textContent = "Error al cargar los usuarios. Intente de nuevo más tarde."
     console.error(err)
   }
 }
