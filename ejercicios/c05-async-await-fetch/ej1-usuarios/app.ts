@@ -1,4 +1,5 @@
 // 1. Definimos la interface: le decimos a TS qué forma tienen los usuarios
+// 1. Definimos la interface
 interface Usuario {
   id: number
   name: string
@@ -7,19 +8,17 @@ interface Usuario {
 }
 
 // 2. Función async que trae los usuarios de la API
-//    Promise<Usuario[]> significa: "va a devolver, eventualmente, un array de Usuarios"
 async function obtenerUsuarios(): Promise<Usuario[]> {
   const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
   const usuarios: Usuario[] = await respuesta.json()
   return usuarios
 }
 
-// 3. Función principal que llama a obtenerUsuarios y muestra los datos
+// 3. Función principal
 async function main() {
   try {
     const usuarios = await obtenerUsuarios()
 
-    // Recorremos el array y mostramos cada usuario en consola
     for (const usuario of usuarios) {
       console.log(`Nombre: ${usuario.name} — Email: ${usuario.email}`)
     }
@@ -29,5 +28,5 @@ async function main() {
   }
 }
 
-// 4. Ejecutamos la función principal
+// 4. Ejecutamos
 main()

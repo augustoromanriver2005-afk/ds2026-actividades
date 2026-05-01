@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2 - DOM + Fetch</title>
+  <style>
+    /* Estilo para el mensaje de error: texto rojo */
+    #error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 2 - Lista de Usuarios</h1>
+
+  <!-- Se muestra mientras cargan los datos -->
+  <p id="cargando">Cargando...</p>
+
+  <!-- Acá se van a insertar los usuarios cuando lleguen -->
+  <ul id="lista"></ul>
+
+  <!-- Se muestra solo si hay un error -->
+  <p id="error" style="display: none;"></p>
+
+  <script src="app.js"></script>
+</body>
+</html>
