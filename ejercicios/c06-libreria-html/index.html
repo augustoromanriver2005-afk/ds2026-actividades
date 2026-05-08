@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Librería - Home</title>
+    <title>Contacto - Librería</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,110 +21,163 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="catalogo.html">Catálogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
+                        <a class="nav-link active" aria-current="page" href="contacto.html">Contacto</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero bg-primary text-white py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold">Bienvenido a Nuestra Librería</h1>
-                    <p class="lead">Descubre miles de libros para todas tus pasiones y aventuras literarias.</p>
-                    <a href="catalogo.html" class="btn btn-light btn-lg">Explorar Catálogo</a>
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="mb-4">Contacto</h1>
+                <p class="text-muted mb-4">¿Tienes una pregunta o comentario? Nos encantaría escucharte. Completa el formulario y nos pondremos en contacto contigo pronto.</p>
+
+               
+                <form id="formularioContacto" novalidate>
+                   
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="nombre" 
+                            name="nombre"
+                            placeholder="Tu nombre completo"
+                            required
+                        >
+                        <div class="invalid-feedback">
+                            Por favor ingresa tu nombre.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            id="email" 
+                            name="email"
+                            placeholder="tu@email.com"
+                            required
+                        >
+                        <div class="invalid-feedback">
+                            Por favor ingresa un email válido.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label">Asunto <span class="text-danger">*</span></label>
+                        <select 
+                            class="form-select" 
+                            id="asunto" 
+                            name="asunto"
+                            required
+                        >
+                            <option value="">-- Selecciona un asunto --</option>
+                            <option value="consulta">Consulta</option>
+                            <option value="reclamo">Reclamo</option>
+                            <option value="sugerencia">Sugerencia</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor selecciona un asunto.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label">Mensaje <span class="text-danger">*</span></label>
+                        <textarea 
+                            class="form-control" 
+                            id="mensaje" 
+                            name="mensaje"
+                            rows="5"
+                            placeholder="Cuéntanos tu mensaje..."
+                            required
+                        ></textarea>
+                        <div class="invalid-feedback">
+                            Por favor ingresa un mensaje.
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-sm-flex">
+                        <button type="submit" class="btn btn-primary btn-lg px-4">
+                            ✉️ Enviar Mensaje
+                        </button>
+                        <button type="reset" class="btn btn-outline-secondary btn-lg px-4">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                
+                <div id="mensajeExito" class="alert alert-success mt-4 d-none" role="alert">
+                    <h4 class="alert-heading">Mensaje enviado</h4>
+                    <p>Gracias por contactarnos. Pronto nos comunicaremos contigo.</p>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="libros-destacados py-5">
-        <div class="container">
-            <h2 class="mb-5 text-center">Libros Destacados</h2>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=El+Quijote" class="card-img-top" alt="El Quijote">
-                        <div class="card-body">
-                            <h5 class="card-title">El Quijote</h5>
-                            <p class="card-text text-muted">Miguel de Cervantes</p>
-                            <p class="card-text">Una obra maestra de la literatura española que narra las aventuras de Don Quijote.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+    </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=1984" class="card-img-top" alt="1984">
-                        <div class="card-body">
-                            <h5 class="card-title">1984</h5>
-                            <p class="card-text text-muted">George Orwell</p>
-                            <p class="card-text">Una novela distópica que explora temas de control totalitario y vigilancia.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=Orgullo+y+Prejuicio" class="card-img-top" alt="Orgullo y Prejuicio">
-                        <div class="card-body">
-                            <h5 class="card-title">Orgullo y Prejuicio</h5>
-                            <p class="card-text text-muted">Jane Austen</p>
-                            <p class="card-text">Una historia clásica de amor y sociedad en la Inglaterra del siglo XIX.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=El+Gran+Gatsby" class="card-img-top" alt="El Gran Gatsby">
-                        <div class="card-body">
-                            <h5 class="card-title">El Gran Gatsby</h5>
-                            <p class="card-text text-muted">F. Scott Fitzgerald</p>
-                            <p class="card-text">Una novela que captura el glamour y la decadencia de los felices años 20.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=Cien+años+de+soledad" class="card-img-top" alt="Cien años de soledad">
-                        <div class="card-body">
-                            <h5 class="card-title">Cien años de soledad</h5>
-                            <p class="card-text text-muted">Gabriel García Márquez</p>
-                            <p class="card-text">Una obra maestra del realismo mágico que narra varias generaciones de una familia.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x400?text=Crimen+y+Castigo" class="card-img-top" alt="Crimen y Castigo">
-                        <div class="card-body">
-                            <h5 class="card-title">Crimen y Castigo</h5>
-                            <p class="card-text text-muted">Fiódor Dostoievski</p>
-                            <p class="card-text">Una novela psicológica que explora la culpa, la redención y la moral.</p>
-                            <a href="libro.html" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        
+        const formulario = document.getElementById('formularioContacto');
+        const mensajeExito = document.getElementById('mensajeExito');
+
+       
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            
+            if (!formulario.checkValidity() === false) {
+                e.stopPropagation();
+            }
+
+            
+            formulario.classList.add('was-validated');
+
+        
+            if (formulario.checkValidity() === true) {
+                
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const asunto = document.getElementById('asunto').value;
+                const mensaje = document.getElementById('mensaje').value;
+
+                mensajeExito.classList.remove('d-none');
+
+                setTimeout(() => {
+                    formulario.reset();
+                    formulario.classList.remove('was-validated');
+                    mensajeExito.classList.add('d-none');
+                }, 3000); 
+
+                console.log({
+                    nombre: nombre,
+                    email: email,
+                    asunto: asunto,
+                    mensaje: mensaje
+                });
+            }
+        });
+
+        document.getElementById('email').addEventListener('change', function() {
+            if (this.value && !this.checkValidity()) {
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+            }
+        });
+    </script>
 </body>
 </html>
