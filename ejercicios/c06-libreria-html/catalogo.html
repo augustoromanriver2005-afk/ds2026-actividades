@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Librería</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -31,12 +35,122 @@
         </div>
     </nav>
 
-    
     <div class="container mt-5">
-        <h1>Catálogo de Libros</h1>
+        <h1 class="mb-4">Catálogo de Libros</h1>
+
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <div class="input-group input-group-lg">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="busqueda" 
+                        placeholder="Busca libros por título, autor..." 
+                        aria-label="Busca libros"
+                    >
+                    <button 
+                        class="btn btn-primary" 
+                        type="button" 
+                        id="btnBuscar"
+                    >
+                        🔍 Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cargando" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Buscando...</span>
+            </div>
+            <p class="mt-2">Buscando libros...</p>
+        </div>
+
+        <div id="error" class="alert alert-danger d-none" role="alert"></div>
+
+        <div class="row g-4" id="resultados">
+            <p class="text-muted">Ingresa un término de búsqueda para ver resultados.</p>
+        </div>
     </div>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    
+    <script src="js/data.js"></script>
+    <script>
+        const inputBusqueda = document.getElementById('busqueda');
+        const btnBuscar = document.getElementById('btnBuscar');
+        const resultados = document.getElementById('resultados');
+        const cargando = document.getElementById('cargando');
+        const error = document.getElementById('error');
+
+        btnBuscar.addEventListener('click', buscarLibros);
+        inputBusqueda.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                buscarLibros();
+            }
+        });
+
+        async function buscarLibros() {
+            const termino = inputBusqueda.value.trim();
+
+            if (!termino) {
+                mostrarError('Por favor ingresa un término de búsqueda.');
+                return;
+            }
+            cargando.classList.remove('d-none');
+            error.classList.add('d-none');
+            resultados.innerHTML = '';
+
+            try {
+                const libros = await obtenerLibrosDesdeBD(termino);
+
+                cargando.classList.add('d-none');
+
+                if (libros.length === 0) {
+                    resultados.innerHTML = '<p class="text-muted col-12">No se encontraron libros con ese término.</p>';
+                    return;
+                }
+
+                libros.forEach(libro => {
+                    resultados.innerHTML += crearCardLibro(libro);
+                });
+
+            } catch (err) {
+                cargando.classList.add('d-none');
+                mostrarError('Error al buscar libros: ' + err.message);
+            }
+        }
+
+        function crearCardLibro(libro) {
+            const imagen = libro.cover_id 
+                ? `https://covers.openlibrary.org/b/id/${libro.cover_id}-M.jpg`
+                : 'https://via.placeholder.com/300x400?text=Sin+imagen';
+            
+            const autor = libro.author_name 
+                ? libro.author_name[0] 
+                : 'Autor desconocido';
+
+            const año = libro.first_publish_year || 'Año desconocido';
+
+            return `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="${imagen}" class="card-img-top" alt="${libro.title}" style="height: 300px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">${libro.title}</h5>
+                            <p class="card-text text-muted">${autor}</p>
+                            <p class="card-text text-muted small">${año}</p>
+                            <p class="card-text" style="min-height: 60px;">${libro.title} es una obra literaria interesante.</p>
+                            <a href="libro.html" class="btn btn-primary btn-sm">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function mostrarError(mensaje) {
+            error.textContent = mensaje;
+            error.classList.remove('d-none');
+            cargando.classList.add('d-none');
+            resultados.innerHTML = '';
+        }
