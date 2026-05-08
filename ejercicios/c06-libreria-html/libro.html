@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Libro - Librería</title>
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -31,9 +31,55 @@
             </div>
         </div>
     </nav>
+
     <div class="container mt-5">
-        <h1>Detalle del Libro</h1>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/300x450?text=El+Quijote" class="img-fluid rounded shadow" alt="El Quijote">
+            </div>
+
+            <div class="col-md-8">
+                <h1>El Quijote</h1>
+                <p class="text-muted fs-5">Miguel de Cervantes</p>
+
+                <hr>
+
+                <h3>Descripción</h3>
+                <p>
+                    El Quijote es una novela de aventuras escrita por Miguel de Cervantes Saavedra, 
+                    publicada en dos volúmenes (1605 y 1615). Relata la historia de un hidalgo de la Mancha 
+                    que pierde la razón de tanto leer libros de caballerías y decide convertirse en caballero 
+                    andante bajo el nombre de Don Quijote de la Mancha.
+                </p>
+                <p>
+                    Acompañado por su escudero Sancho Panza, Don Quijote recorre La Mancha en busca de aventuras. 
+                    Durante su peregrinaje, lucha contra molinos que confunde con gigantes, se enamora de la aldeana 
+                    Dulcinea del Toboso a la que convierte en dama noble de sus pensamientos, y se ve envuelto en 
+                    numerosas aventuras que ponen en tela de juicio su visión de la realidad.
+                </p>
+                <p>
+                    Esta obra maestra de la literatura española es considerada una de las mejores novelas de todos 
+                    los tiempos y es el punto de partida de la novela moderna. Su influencia en la literatura mundial 
+                    es incalculable, influyendo en innumerables autores y obras.
+                </p>
+
+                <hr>
+
+                <h3 class="text-primary">$29.000 ARS</h3>
+
+                <div class="d-grid gap-2 d-sm-flex">
+                    <button class="btn btn-primary btn-lg px-4 gap-3">
+                        🛒 Comprar
+                    </button>
+                    <a href="catalogo.html" class="btn btn-outline-secondary btn-lg px-4">
+                        ← Volver al Catálogo
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
