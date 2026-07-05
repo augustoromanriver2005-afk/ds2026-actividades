@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-export function NavbarComponent() {
+export function Header() {
   return (
     <Navbar bg="dark" variant="dark" sticky="top" className="mb-4">
       <Container>
