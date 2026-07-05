@@ -7,7 +7,7 @@ import type { Libro } from '../types/libro';
 const IMG_PLACEHOLDER = 'https://placehold.co/300x400?text=Libro';
 
 interface LibroNuevoProps {
-  onAgregar: (libro: Libro) => void;
+  onAgregar?: (libro: Libro) => void;
 }
 
 export function LibroNuevo({ onAgregar }: LibroNuevoProps) {
@@ -41,7 +41,7 @@ export function LibroNuevo({ onAgregar }: LibroNuevoProps) {
     }
 
     setErrores({});
-    onAgregar({
+    onAgregar?.({
       id: Date.now(),
       ...resultado.data,
       imagen: IMG_PLACEHOLDER,

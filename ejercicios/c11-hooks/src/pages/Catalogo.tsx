@@ -1,13 +1,17 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LibroCard } from '../components/LibroCard';
+import { useFetch } from '../hooks/useFetch';
 import type { Libro } from '../types/libro';
 
-interface CatalogoProps {
-  libros: Libro[];
-}
+export function Catalogo() {
+  const { data: libros, loading, error } = useFetch<Libro[]>('/libros.json');
 
-export function Catalogo({ libros }: CatalogoProps) {
+  useEffect(() => {
+    document.title = libros ? `Catálogo (${libros.length})` : 'Catálogo';
+  }, [libros]);
+
   return (
     <Container>
       <div className="d-flex justify-content-between align-items-center mb-5">
@@ -16,13 +20,19 @@ export function Catalogo({ libros }: CatalogoProps) {
           + Nuevo libro
         </Link>
       </div>
-      <Row xs={1} md={2} lg={3} className="g-4">
-        {libros.map((libro) => (
-          <Col key={libro.id}>
-            <LibroCard {...libro} />
-          </Col>
-        ))}
-      </Row>
+
+      {loading && <Spinner animation="border" className="d-block mx-auto" />}
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {!loading && !error && (
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {(libros ?? []).map((libro) => (
+            <Col key={libro.id}>
+              <LibroCard {...libro} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </Container>
   );
 }

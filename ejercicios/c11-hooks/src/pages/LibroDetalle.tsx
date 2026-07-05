@@ -1,14 +1,22 @@
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { useFetch } from '../hooks/useFetch';
 import type { Libro } from '../types/libro';
 
-interface LibroDetalleProps {
-  libros: Libro[];
-}
-
-export function LibroDetalle({ libros }: LibroDetalleProps) {
+export function LibroDetalle() {
   const { id } = useParams<{ id: string }>();
-  const libro = libros.find((l) => l.id === Number(id));
+  const { data: libros, loading, error } = useFetch<Libro[]>('/libros.json');
+
+  if (loading) return <Spinner animation="border" className="d-block mx-auto my-5" />;
+  if (error) {
+    return (
+      <Container className="py-4">
+        <Alert variant="danger">{error}</Alert>
+      </Container>
+    );
+  }
+
+  const libro = (libros ?? []).find((l) => l.id === Number(id));
 
   if (!libro) {
     return (
