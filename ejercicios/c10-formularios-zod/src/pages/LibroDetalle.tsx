@@ -1,8 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { libros } from '../data/libros';
+import type { Libro } from '../types/libro';
 
-export function LibroDetalle() {
+interface LibroDetalleProps {
+  libros: Libro[];
+}
+
+export function LibroDetalle({ libros }: LibroDetalleProps) {
   const { id } = useParams<{ id: string }>();
   const libro = libros.find((l) => l.id === Number(id));
 

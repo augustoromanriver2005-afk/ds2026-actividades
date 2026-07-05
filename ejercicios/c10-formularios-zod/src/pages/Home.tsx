@@ -1,9 +1,13 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Hero } from '../components/Hero';
 import { LibroCard } from '../components/LibroCard';
-import { libros } from '../data/libros';
+import type { Libro } from '../types/libro';
 
-export function Home() {
+interface HomeProps {
+  libros: Libro[];
+}
+
+export function Home({ libros }: HomeProps) {
   return (
     <>
       <Hero />
@@ -12,14 +16,7 @@ export function Home() {
         <Row xs={1} md={2} lg={3} className="g-4">
           {libros.map((libro) => (
             <Col key={libro.id}>
-              <LibroCard
-                id={libro.id}
-                titulo={libro.titulo}
-                autor={libro.autor}
-                precio={libro.precio}
-                imagen={libro.imagen}
-                descripcion={libro.descripcion}
-              />
+              <LibroCard {...libro} />
             </Col>
           ))}
         </Row>

@@ -11,6 +11,7 @@ export function Header() {
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/catalogo">Catálogo</Nav.Link>
+          <Nav.Link as={Link} to="/libros/nuevo">Nuevo libro</Nav.Link>
           <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
         </Nav>
       </Container>

@@ -1,6 +1,6 @@
 import type { Libro } from '../types/libro';
 
-export const libros: Libro[] = [
+export const librosIniciales: Libro[] = [
   {
     id: 1,
     titulo: 'El Quijote',
@@ -8,6 +8,7 @@ export const libros: Libro[] = [
     precio: 25.99,
     imagen: 'https://via.placeholder.com/300x400?text=El+Quijote',
     descripcion: 'Una obra maestra de la literatura española que narra las aventuras de Don Quijote.',
+    disponible: true,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const libros: Libro[] = [
     precio: 19.99,
     imagen: 'https://via.placeholder.com/300x400?text=1984',
     descripcion: 'Una novela distópica que explora temas de control totalitario y vigilancia.',
+    disponible: true,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const libros: Libro[] = [
     precio: 22.99,
     imagen: 'https://via.placeholder.com/300x400?text=Orgullo+y+Prejuicio',
     descripcion: 'Una historia clásica de amor y sociedad en la Inglaterra del siglo XIX.',
+    disponible: true,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const libros: Libro[] = [
     precio: 21.99,
     imagen: 'https://via.placeholder.com/300x400?text=El+Gran+Gatsby',
     descripcion: 'Una novela que captura el glamour y la decadencia de los felices años 20.',
+    disponible: true,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const libros: Libro[] = [
     precio: 24.99,
     imagen: 'https://via.placeholder.com/300x400?text=Cien+años+de+soledad',
     descripcion: 'Una obra maestra del realismo mágico que narra varias generaciones de una familia.',
+    disponible: true,
   },
   {
     id: 6,
@@ -48,5 +53,6 @@ export const libros: Libro[] = [
     precio: 26.99,
     imagen: 'https://via.placeholder.com/300x400?text=Crimen+y+Castigo',
     descripcion: 'Una novela psicológica que explora la culpa, la redención y la moral.',
+    disponible: true,
   },
 ];

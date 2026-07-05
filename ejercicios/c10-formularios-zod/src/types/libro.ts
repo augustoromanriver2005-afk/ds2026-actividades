@@ -5,4 +5,5 @@ export type Libro = {
   precio: number;
   imagen: string;
   descripcion: string;
+  disponible: boolean;
 };

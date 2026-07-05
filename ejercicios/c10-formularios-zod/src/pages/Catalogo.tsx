@@ -1,22 +1,25 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { LibroCard } from '../components/LibroCard';
-import { libros } from '../data/libros';
+import type { Libro } from '../types/libro';
 
-export function Catalogo() {
+interface CatalogoProps {
+  libros: Libro[];
+}
+
+export function Catalogo({ libros }: CatalogoProps) {
   return (
     <Container>
-      <h2 className="mb-5 text-center">Catálogo Completo</h2>
+      <div className="d-flex justify-content-between align-items-center mb-5">
+        <h2 className="mb-0">Catálogo Completo</h2>
+        <Link to="/libros/nuevo" className="btn btn-success">
+          + Nuevo libro
+        </Link>
+      </div>
       <Row xs={1} md={2} lg={3} className="g-4">
         {libros.map((libro) => (
           <Col key={libro.id}>
-            <LibroCard
-              id={libro.id}
-              titulo={libro.titulo}
-              autor={libro.autor}
-              precio={libro.precio}
-              imagen={libro.imagen}
-              descripcion={libro.descripcion}
-            />
+            <LibroCard {...libro} />
           </Col>
         ))}
       </Row>
