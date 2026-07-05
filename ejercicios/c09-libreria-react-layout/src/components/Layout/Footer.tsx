@@ -1,4 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,9 +15,9 @@ export function Footer() {
           <Col md={4} className="mb-3">
             <h5>Enlaces</h5>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-white text-decoration-none">Home</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Catálogo</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Contacto</a></li>
+              <li><Link to="/" className="text-white text-decoration-none">Home</Link></li>
+              <li><Link to="/catalogo" className="text-white text-decoration-none">Catálogo</Link></li>
+              <li><Link to="/contacto" className="text-white text-decoration-none">Contacto</Link></li>
             </ul>
           </Col>
           <Col md={4} className="mb-3">

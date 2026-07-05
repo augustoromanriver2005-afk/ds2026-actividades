@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import type { Libro } from '../types/libro';
 
-export function LibroCard({ titulo, autor, precio, imagen, descripcion }: Libro) {
+export function LibroCard({ id, titulo, autor, precio, imagen, descripcion }: Libro) {
   const [likes, setLikes] = useState<number>(0);
 
   return (
@@ -20,12 +21,9 @@ export function LibroCard({ titulo, autor, precio, imagen, descripcion }: Libro)
         <Card.Text className="text-primary fw-bold">${precio}</Card.Text>
 
         <div className="d-flex gap-2">
-          <Button
-            variant="primary"
-            className="flex-grow-1"
-          >
+          <Link to={`/libros/${id}`} className="btn btn-primary flex-grow-1">
             Ver Detalles
-          </Button>
+          </Link>
           <Button
             variant="outline-danger"
             onClick={() => setLikes(likes + 1)}
