@@ -1,0 +1,21 @@
+services:
+  api: # nuestro backend (hello-world + chequeo de conexión a la DB)
+    build: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - backend/.env
+    depends_on:
+      - db
+
+  db: # PostgreSQL
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - backend/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data # persistencia de datos
+
+volumes:
+  pgdata:
