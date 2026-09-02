@@ -1,0 +1,130 @@
+@baseUrl = http://localhost:3000
+
+### ===================== LIBROS =====================
+
+### Listar libros (con su autor)
+GET {{baseUrl}}/api/libros
+
+### Sólo los disponibles
+GET {{baseUrl}}/api/libros?disponible=true
+
+### Un libro que existe (con autor y categorías)
+GET {{baseUrl}}/api/libros/1
+
+### Un libro que no existe -> 404
+GET {{baseUrl}}/api/libros/999
+
+### Un id inválido -> 400
+GET {{baseUrl}}/api/libros/abc
+
+### Crear un libro -> 201
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autorId": 1,
+  "precio": 18.5,
+  "imagen": "https://via.placeholder.com/300x400?text=Rayuela",
+  "descripcion": "Una novela experimental que puede leerse de más de una forma.",
+  "disponible": true
+}
+
+### Crear un libro sin título -> 400
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "autorId": 1,
+  "precio": 18.5,
+  "imagen": "https://via.placeholder.com/300x400?text=Rayuela",
+  "descripcion": "Falta el título."
+}
+
+### Crear un libro con un autor que no existe -> 409 (P2003, la FK no encuentra el autor)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Huérfano",
+  "autorId": 9999,
+  "precio": 1000,
+  "imagen": "https://via.placeholder.com/300x400?text=Huerfano",
+  "descripcion": "Un autor que no existe."
+}
+
+### Editar un libro que existe -> 200
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "El Quijote (edición anotada)",
+  "precio": 27.99,
+  "disponible": false
+}
+
+### Editar un libro que no existe -> 404
+PUT {{baseUrl}}/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "No existe"
+}
+
+### Borrar un libro que existe -> 204
+DELETE {{baseUrl}}/api/libros/6
+
+### Borrar un libro que no existe (ya lo borramos) -> 404
+DELETE {{baseUrl}}/api/libros/6
+
+### ===================== AUTORES =====================
+
+### Listar autores (con sus libros)
+GET {{baseUrl}}/api/autores
+
+### Un autor que existe
+GET {{baseUrl}}/api/autores/1
+
+### Un autor que no existe -> 404
+GET {{baseUrl}}/api/autores/999
+
+### Crear un autor -> 201
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar"
+}
+
+### Crear un autor duplicado -> 409
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar"
+}
+
+### Editar un autor que existe -> 200
+PUT {{baseUrl}}/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Miguel de Cervantes Saavedra"
+}
+
+### Editar un autor que no existe -> 404
+PUT {{baseUrl}}/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "No existe"
+}
+
+### Borrar un autor que tiene libros -> 409 (P2003, hay libros relacionados)
+DELETE {{baseUrl}}/api/autores/1
+
+### Borrar un autor sin libros -> 204
+DELETE {{baseUrl}}/api/autores/7
+
+### Borrar un autor que no existe (ya lo borramos) -> 404
+DELETE {{baseUrl}}/api/autores/7
