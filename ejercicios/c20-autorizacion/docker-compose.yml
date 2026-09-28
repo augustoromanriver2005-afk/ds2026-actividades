@@ -1,0 +1,31 @@
+services:
+  api: # nuestro backend (CRUD de /api/libros y /api/autores, ahora contra PostgreSQL)
+    build: ./backend
+    ports:
+      - "3000:3000"
+      - "5555:5555" # ← Prisma Studio
+    env_file:
+      - backend/.env
+    volumes:
+      - ./backend/src:/app/src # modo dev: recarga sola con tsx watch
+      - ./backend/prisma:/app/prisma # ← NUEVO: acá escribe Prisma (schema, migrations, seed)
+      - ./backend/prisma.config.ts:/app/prisma.config.ts # ← NUEVO
+    depends_on:
+      db:
+        condition: service_healthy # ← esperar a que la DB esté LISTA, no sólo levantada
+
+  db: # PostgreSQL
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - backend/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data # persistencia de datos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  pgdata:

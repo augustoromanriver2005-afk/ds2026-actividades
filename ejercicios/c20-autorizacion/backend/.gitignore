@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.env
+dist
+build
+.DS_Store
+
+# Cliente generado por Prisma: código derivado, no va a Git
+src/generated/prisma
